@@ -1,0 +1,30 @@
+---
+title: "Graph Vocabulary in R"
+output: html_notebook
+---
+
+Here is a cookbook with rapid recipes of elementary graph types. Use it for quick data visualization or when you are learning ggplot2 and R.
+
+
+```{r}
+library(ggplot2)
+
+repository_directory <- "/Users/andrew/reps/r-graph-vocabulary/" # use your dir
+setwd(repository_directory)
+
+source("themes/theme_blank.R") # load blank theme
+```
+
+# Bar charts
+```{r}
+df <- read.csv("data/3-columns.csv", sep=";") # read CSV in data.frame
+names(df) <- c("col1", "col2", "col3") # column naming
+
+x_seq <- seq(1:length(df$col1))   # we do not have x-data, so we generate a sequence
+
+ggplot(df) +                      # define dataframe
+  aes(x = x_seq, y = col1) +      # define x, y
+  geom_bar(stat = "identity") +   # bars geometry, 'identity' force to use y-data
+  theme_blank()                   # stylize: remove axis and labels
+
+```
