@@ -6,8 +6,8 @@ output: html_notebook
 Here is a cookbook with rapid recipes of elementary graph types. Use it for quick data visualization or when you are learning ggplot2 and R.
 
 
-```{r}
-library(ggplot2)
+```{r, echo=FALSE} 
+# initialize
 
 repository_directory <- "/Users/andrew/reps/r-graph-vocabulary/" # use your dir
 setwd(repository_directory)
@@ -17,14 +17,41 @@ source("themes/theme_blank.R") # load blank theme
 
 # Bar charts
 ```{r}
+library(ggplot2)
+
 df <- read.csv("data/3-columns.csv", sep=";") # read CSV in data.frame
 names(df) <- c("col1", "col2", "col3") # column naming
 
-x_seq <- seq(1:length(df$col1))   # we do not have x-data, so we generate a sequence
-
+x_seq <- seq(1:length(df$col2))   # we do not have x-data, so we generate a sequence
+                                  # corresponding to amount of data
 ggplot(df) +                      # define dataframe
-  aes(x = x_seq, y = col1) +      # define x, y
+  aes(x = x_seq, y = col2) +      # define x, y
   geom_bar(stat = "identity") +   # bars geometry, 'identity' force to use y-data
   theme_blank()                   # stylize: remove axis and labels
+
+```
+
+# Word cloud
+```{r}
+library(xlsx)
+library(wordcloud)
+library(RColorBrewer)
+
+df <- read.csv("data/tags-freq.csv", sep=";") # read CSV in data.frame
+
+colorPallete <- brewer.pal(n = 8, name = 'RdPu') # get Color Brewer pallete, [optional]
+par(family = "Akrobat") # font family, [optional]
+
+wordcloud(df$tag, df$freq,        # text chunks and their frequencies
+          scale = c(3, 0.5),      # scale range
+          min.freq = 50,          # min of m
+          max.words = Inf,        # sample size
+          colors = colorPallete,  # map colors
+          random.order = FALSE,  
+          random.color = FALSE,
+          rot.per = .0,           # possible rotation, 0 to deny rotation
+          ordered.colors = FALSE,
+          use.r.layout = FALSE, 
+          fixed.asp = TRUE)
 
 ```

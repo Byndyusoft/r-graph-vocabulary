@@ -1,6 +1,6 @@
 library(ggplot2)
 
-repository_directory <- "/Users/andrew/reps/r-graph-vocabulary/"
+repository_directory <- "~/reps/r-graph-vocabulary/"
 setwd(repository_directory)
 
 source("themes/theme_blank.R")
