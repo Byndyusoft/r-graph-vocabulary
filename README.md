@@ -6,3 +6,4 @@ You neew to install R and RStudio. You need the last one for playing with R-note
 
 ## Libraries
 - ggplot2
+- wordcloud
