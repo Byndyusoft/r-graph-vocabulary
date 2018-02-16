@@ -8,14 +8,15 @@ Here is a cookbook with rapid recipes of elementary graph types. Use it for quic
 
 ```{r, echo=FALSE} 
 # initialize
-
-repository_directory <- "/Users/andrew/reps/r-graph-vocabulary/" # use your dir
+# install.packages("ggplot2", "wordcloud", "RColorBrewer")
+repository_directory <- "~/reps/r-graph-vocabulary/" # use your dir
 setwd(repository_directory)
 
 source("themes/theme_blank.R") # load blank theme
+
 ```
 
-# Bar charts
+# Plain bar charts
 ```{r}
 library(ggplot2)
 
@@ -31,9 +32,10 @@ ggplot(df) +                      # define dataframe
 
 ```
 
-# Word cloud
+## Stacked bar charts
+
+## Word cloud
 ```{r}
-library(xlsx)
 library(wordcloud)
 library(RColorBrewer)
 
@@ -55,3 +57,58 @@ wordcloud(df$tag, df$freq,        # text chunks and their frequencies
           fixed.asp = TRUE)
 
 ```
+## Beanplot
+
+```{r}
+library(beanplot)
+
+data("singer", package = "lattice")
+
+par(lend = 1, mai = c(0.8, 0.8, 0.5, 0.5))
+
+beanplot(
+    height ~ voice.part,
+    data = singer,
+    ll = 0.04,
+    main = "beanplot",
+    ylab = "body height (inch)",
+    side = "both",
+    border = NA,
+    col = list("black", c("grey", "white"))
+)
+legend(
+    "bottomleft",
+    fill = c("black", "grey"),
+    legend = c("Group 2", "Group 1")
+)
+```
+
+## Treemaps
+
+```{r}
+library(treemapify)
+library(viridis)
+
+ggplot(G20, aes(area = gdp_mil_usd, 
+                fill = hdi, 
+                label = country,
+                subgroup = region)) +
+    geom_treemap() +
+    geom_treemap_subgroup_border(col='white') +
+    geom_treemap_subgroup_text(family = "Arial Black", 
+                               place = "bottomleft", 
+                               padding.x = grid::unit(1, "mm"),
+                               padding.y = grid::unit(2, "mm"),
+                               grow = FALSE, 
+                               alpha = 0.25, 
+                               colour = "black", 
+                               min.size = 8) +
+    geom_treemap_text(family = "Arial",
+                      colour = "black",
+                      place = "topleft",
+                      padding.x = grid::unit(2, "mm"),
+                      padding.y = grid::unit(2, "mm"),
+                      reflow = T) +
+    scale_fill_distiller(palette = "Spectral")
+```
+
