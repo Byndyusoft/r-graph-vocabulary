@@ -1,6 +1,13 @@
 # Visualizaiton Vocabulary with R and ggplot
 Snippets and case studies for rapid data visualization in R with ggplot2 and some others libraries.
 
+## Участникам DUMP-2018
+Примеры, рассмотренные в докладе находятся в папке
+
+`case-studies/sociograph-events-explore.R`
+
+
+
 ## Installation
 You neew to install R and RStudio. You need the last one for playing with R-notebooks — it is very fun because of immidiate connection between input and result.
 
