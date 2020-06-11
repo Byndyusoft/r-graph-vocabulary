@@ -24,6 +24,7 @@ You neew to install R and RStudio. You need the last one for playing with R-note
 - networkD3
 - treemapify
 - wordcloud
+- rworldmap
 
 ## Credits
 Inspired by [ggplot grammar](http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf) and data visualization library [Data Viz Project](http://datavizproject.com/about/)
